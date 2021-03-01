@@ -1,6 +1,9 @@
-var app = require('express')();
+const app = require('express')();
 app.set('view engine', 'ejs');
 
+const fs = require('fs');
+const { runInNewContext } = require('vm');
+let postsDir = 'views/partials/posts';
 
 app.get('/', (req, res) => {
     res.render('index', {view:'home'});
@@ -11,7 +14,13 @@ app.get('/posts', (req, res) => {
 });
 
 app.get('/posts/:name', (req, res) => {
-    res.render('index', {view: 'posts/' + req.params.name});
+    let filenames = fs.readdirSync(postsDir);
+    if(filenames.includes(req.params.name.split('.')[0] + '.ejs')){
+        res.render('index', {view: 'posts/' + req.params.name});
+    } else {
+        res.render('index', {view: '404'});
+    }
+
 });
 
 app.get('/about', (req, res) => {
