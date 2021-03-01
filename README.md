@@ -1,7 +1,14 @@
-# Basic Markdown Blog with EJS and Shell Scripting
+# Static Markdown Blog with EJS, Express and Shell
 
 ### Main Idea
-The goal of this project is to create a simple node based blog that generates posts based on markdown documents. As the blog writer, you will write blog posts in markdown which will the be converted into HTML using shell scripting. The blog posts will then be displayed on their own page and separately, as a collection under a "Posts" page where you will see the title and date of the post. All functionality perviously described will be implemented in node js within a `server.js` file and a `updateblog.sh` script which will have to be run manually by the Blogger when updating/writing blogs on the host machine.
+The goal of this project is to create a simple node based blog that generates posts based on markdown documents. As the blog writer, you will write blog posts in markdown which will the be converted into HTML using shell scripting. The blog posts will then be displayed on their own page and separately, as a collection under a "Posts" page where you will see the title and date of the post. All functionality perviously described will be implemented in node js within a `server.js` file and a `updateblog.sh` script which will have to be run manually by the Blogger when updating/writing blogs on the host machine. This tutorial will only focus on blog content, and not styling.
+
+### EJS
+Using templates with javascript will allow us to have a single `index.ejs` page with a common title, navigation bar and/or footer. Then every endpoint like the individual posts or the home page will include just those specific HTML elements in their respective `.ejs` files. All templates, including `index.ejs` will be stored inside of a `views` directory. Within that all specific endpoints will be stored under the `partials` directory and within that all specific posts will be stored under `posts`.
+
+### Express Routing and Rendering
+
+
 
 
 ### Creating or Updating posts

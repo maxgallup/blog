@@ -2,7 +2,6 @@ const app = require('express')();
 app.set('view engine', 'ejs');
 
 const fs = require('fs');
-const { runInNewContext } = require('vm');
 let postsDir = 'views/partials/posts';
 
 app.get('/', (req, res) => {
