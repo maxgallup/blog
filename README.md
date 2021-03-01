@@ -7,7 +7,20 @@ The goal of this project is to create a simple node based blog that generates po
 Using templates with javascript will allow us to have a single `index.ejs` page with a common title, navigation bar and/or footer. Then every endpoint like the individual posts or the home page will include just those specific HTML elements in their respective `.ejs` files. All templates, including `index.ejs` will be stored inside of a `views` directory. Within that all specific endpoints will be stored under the `partials` directory and within that all specific posts will be stored under `posts`.
 
 ### Express Routing and Rendering
+Every endpoint renders the `index.ejs` file with a given object passing along the name of the content that should be displayed on every given page. In the example below, we are passing a `{view: 'posts'}` which will be accepted within the body of the `index.ejs` file. Effectively copying the contents of `posts.ejs` into the body of `index.ejs`.
+```js
+//server.js
+app.get('/posts', (req, res) => {
+    res.render('index', {view:'posts'});
+});
 
+//index.ejs
+<body>
+    ...
+    <%- include('partials/' + view) -%>
+    ...
+</body>
+```
 
 
 
