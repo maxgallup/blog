@@ -1,4 +1,5 @@
-# blog
+# Basic Markdown Blog using Node with EJS
+
 
 
 ### Writing posts
