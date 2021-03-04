@@ -63,6 +63,8 @@ function createPostsPage() {
     echo "</ul>"           >> posts.ejs
     mv posts.ejs ~/blog/blog/views/partials
 }
+convertMdtoHtml
+createPostsPage
 ```
 
 Firstly, we create three arrays which will contain the title, date and filename of each post.The first line inside of `convertMdtoHtml` checks to see if there are any files that end in `.md`. If there are, we create `newEjsFile` that holds the name of the file and swaps `.md` for `.ejs`, see [sed command](https://www.howtogeek.com/666395/how-to-use-the-sed-command-on-linux/). Then we parse the file to append the appropriate text content into the previously created arrays. On the next line `pandoc` converts from markdown to html and we specify the name of the output file with the previously created variable. Finally, the file needs to be moved into the `.../partials/posts` directory, which is given by and absolute path. Saving the shell script above as root into the `/usr/bin` directory on linux machines, allows you to run the script anywhere on your machine simply by typing its name into the command line, for example `convertmd`.
@@ -71,4 +73,6 @@ Firstly, we create three arrays which will contain the title, date and filename 
 
 The aim of the posts page is to display a collection of all posts with date and title information. Additionally the titles should be clickable links to the full posts. The shell script generates this page dynamically based on the posts. Looking into `createPostsPage` we simply write html line by line and loop through all available posts for the collection of posts.
 
+### Deployment 
 
+One can create a docker image with the given Dockerfile. Important thing to note here is to install nodemon in order for the server to restart whenever a post has been added. Additionally when running the container be sure to use `-v $(pwd):/app` in order to map the blog directory (assuming you are currently inside of it) to the `/app` inside of the container. Otherwise expose whatever port you want on your host to 8080 in node `-p xxxx:8080`. 
