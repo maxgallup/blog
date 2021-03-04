@@ -37,8 +37,12 @@ function createPostsPage() {
     mv posts.ejs ~/blog/blog/views/partials
 }
 
-convertMdtoHtml
+function removeOldPosts() {
+    rm ~/blog/blog/views/partials/posts/*
+}
 
+removeOldPosts
+convertMdtoHtml
 createPostsPage
 
 
